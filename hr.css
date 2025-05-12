@@ -1,0 +1,211 @@
+/* hr.css */
+
+/* Variables for colors, fonts, and spacing */
+:root {
+    --primary-color: #00509E;
+    --secondary-color: #EDF2F4;
+    --text-color: #333;
+    --hover-color: #8DB6D9;
+    --font-family: 'Arial', sans-serif;
+    --padding: 15px;
+    --border-radius: 8px;
+}
+.answer {
+    display: none; /* Hidden by default */
+    transition: all 0.3s ease-in-out;
+}
+
+.answer.show {
+    display: block; /* Show the answer when the 'show' class is applied */
+}
+
+.answer.hide {
+    display: none; /* Hide the answer when the 'hide' class is applied */
+}
+
+
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: var(--padding);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.background-overlay {
+    background: linear-gradient(
+        rgba(0, 80, 158, 0.9), 
+        rgba(0, 80, 158, 0.7)
+    ), url('background.jpg') no-repeat center center/cover;
+    min-height: 100vh;
+    padding: var(--padding);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Header Styling */
+h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* FAQ Styles */
+.faq-item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--hover-color);
+    padding-bottom: var(--padding);
+    transition: transform 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+}
+
+.question {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.question:hover {
+    color: var(--hover-color);
+}
+
+.answer {
+    font-size: 1rem;
+    color: var(--text-color);
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .question {
+        font-size: 1rem;
+    }
+
+    .answer {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for smooth fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FAQ Accordion Functionality (Optional JavaScript Enhancement) */
+.faq-item.active .answer {
+    display: block;
+}
+
+/* Logo styling with transitions */
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .top-nav {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex; /* Align items in a row */
+    gap: 20px; /* Space between the items */
+    z-index: 1000; /* Keeps the navigation on top of all content */
+  
+}
+
+.nav-item {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: #021502; /* Bright green on hover */
+    color: #fb5c0c;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        flex-direction: column; /* Stack items vertically on small screens */
+        top: 5px;
+        left: 5px;
+    }
+
+    .nav-item {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+}
+
+

@@ -1,0 +1,254 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f2d6b1, #f8d8a4, #ffad5a); /* Gradient background */
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header and Navigation */
+header {
+  background-color: #4CAF50;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav ul li a.active {
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+  color: #043e74;
+  margin: 30px 0;
+  font-weight: bold;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+/* Help Center Caption */
+.help-caption {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+  font-style: italic;
+  line-height: 1.5;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Style the caption with a subtle fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.help-caption {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Mission Section */
+.mission {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  text-align: center;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.mission:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.mission h2 {
+  color: #043e74;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.mission p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  text-align: justify;
+}
+
+/* FAQ Section */
+.faq {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.faq:hover {
+  transform: translateY(0); /* Subtle rise effect */
+}
+
+.faq-item {
+  margin-bottom: 25px;
+}
+
+.faq-button {
+  background-color: #37c0e2;
+  color: white;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.faq-button:hover {
+  background-color: #0b5cc7;
+  transform: scale(1.05);
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Motivational Section */
+.motivational {
+  background-color: #f4f4f4;
+  padding: 40px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #444;
+  font-style: italic;
+  border-top: 3px solid #ffad5a;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.motivational p {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: bold;
+  color: #333;
+}
+
+.motivational p::before {
+  content: '💡 ';
+  font-size: 1.8rem;
+}
+
+.motivational p::after {
+  content: ' 💫';
+  font-size: 1.8rem;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Navigation Bar */
+.top-nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.nav-item {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  color: brown;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: #010e01; /* Bright green on hover */
+  color: #ee4511;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    flex-direction: column;
+    top: 5px;
+    left: 5px;
+  }
+
+  .nav-item {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+}

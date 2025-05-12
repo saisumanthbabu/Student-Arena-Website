@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA Interview Questions</title>
+    <link rel="stylesheet" href="Common.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header>
+       
+        <img src="logo.png" alt="Logo" class="logo">
+    </header>
+    <h1>NVIDIA Top Programming Questions</h1>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>1. Two Sum</h3>
+            <button onclick="toggleAnswer('answer1')">Show Answer</button>
+        </div>
+        <div id="answer1" class="answer">
+<pre>
+function twoSum(nums, target) {
+    let map = new Map();
+    
+    for (let i = 0; i < nums.length; i++) {
+        let diff = target - nums[i];
+        
+        if (map.has(diff)) {
+            return [map.get(diff), i];
+        }
+        
+        map.set(nums[i], i);
+    }
+    
+    return [];
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>2. Longest Substring Without Repeating Characters</h3>
+            <button onclick="toggleAnswer('answer2')">Show Answer</button>
+        </div>
+        <div id="answer2" class="answer">
+<pre>
+function lengthOfLongestSubstring(s) {
+    let map = new Map();
+    let maxLength = 0;
+    let start = 0;
+    
+    for (let end = 0; end < s.length; end++) {
+        if (map.has(s[end])) {
+            start = Math.max(map.get(s[end]) + 1, start);
+        }
+        
+        map.set(s[end], end);
+        maxLength = Math.max(maxLength, end - start + 1);
+    }
+    
+    return maxLength;
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>3. Product of Array Except Self</h3>
+            <button onclick="toggleAnswer('answer3')">Show Answer</button>
+        </div>
+        <div id="answer3" class="answer">
+<pre>
+function productExceptSelf(nums) {
+    let result = [];
+    let left = 1, right = 1;
+    
+    for (let i = 0; i < nums.length; i++) {
+        result[i] = left;
+        left *= nums[i];
+    }
+    
+    for (let i = nums.length - 1; i >= 0; i--) {
+        result[i] *= right;
+        right *= nums[i];
+    }
+    
+    return result;
+}
+</pre>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle answer visibility
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            answer.classList.toggle('show-answer');
+        }
+    </script>
+     <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+</body>
+</html>

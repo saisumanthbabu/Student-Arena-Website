@@ -1,0 +1,69 @@
+@import url('common.css');
+
+/* Main Container for Opportunities */
+.opportunities {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: center;
+}
+
+/* Individual Card */
+.card {
+    background: linear-gradient(to bottom right, #6c5ce7, #74b9ff);
+    width: 280px; /* Uniform width for all cards */
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Content */
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #f5f6fa;
+}
+
+.card p {
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+/* Button Inside Card */
+.card button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #2d3436;
+    color: #dfe6e9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.card button:hover {
+    background-color: #636e72;
+}
+/* Opportunity Page Cards */
+.card-link {
+    text-decoration: none; /* Remove underline from link */
+    color: inherit; /* Inherit text color for consistency */
+    display: block; /* Ensure the entire card is clickable */
+}
+
+.card-link:hover .card {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+

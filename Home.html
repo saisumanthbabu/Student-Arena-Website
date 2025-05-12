@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="Home.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script defer src="Home.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="logo.png" alt="Logo" class="logo">
+            <button class="dark-mode-toggle" id="darkModeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Greeting Section -->
+    <section class="greeting">
+        <h1 id="greetingMessage">Welcome to the Student Arena!</h1>
+    </section>
+
+    <!-- Main container for the form -->
+    <div class="container">
+        <h2>Select Your Details</h2>
+        <form action="Next.html" method="GET" class="form">
+            <label for="branch">Branch:</label>
+            <select id="branch" name="branch">
+                <option value="CSE">Computer Science and Data Science</option>
+                <option value="ECE">Electronics</option>
+                <option value="EEE">Electrical</option>
+                <option value="ME">Mechanical</option>
+            </select>
+            
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+                <option value="1">3rd Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">1st Year</option>
+                <option value="4">4th Year</option>
+            </select>
+
+            <label for="semester">Semester:</label>
+            <select id="semester" name="semester">
+                <option value="1">Semester 2</option>
+                <option value="2">Semester 1</option>
+            </select>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+    <div class="top-nav">
+        <a href="Arena.html" class="nav-item"><span class="icon">🏠</span> Home</a>
+        <a href="about.html" class="nav-item"><span class="icon">ℹ️</span> About Us</a>
+        <a href="help.html" class="nav-item"><span class="icon">❓</span> Help</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+</body>
+</html>

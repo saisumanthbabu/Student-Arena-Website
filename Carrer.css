@@ -1,0 +1,36 @@
+@import url('common.css');
+
+/* Branch Selection Section */
+.branch-selection {
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    border-radius: 15px;
+    width: 50%;
+    color: white;
+}
+
+.branch-selection h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.branch-selection select {
+    padding: 10px;
+    font-size: 1rem;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80%;
+}
+
+.branch-selection select:focus {
+    border: 2px solid #3498db;
+    outline: none;
+}
+
+.branch-selection button {
+    font-size: 1rem;
+    font-weight: bold;
+}

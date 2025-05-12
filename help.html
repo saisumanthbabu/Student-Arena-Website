@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help - Student Portal</title>
+  <link rel="stylesheet" href="help.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="top-nav">
+    <a href="Arena.html" class="nav-item"><span class="icon">🏠</span> Home</a>
+    <a href="about.html" class="nav-item"><span class="icon">ℹ️</span> About Us</a>
+    <a href="help.html" class="nav-item"><span class="icon">❓</span> Help</a>
+  </div>
+
+  <!-- Help Page Content -->
+  <section class="container">
+    <h1>Help Center</h1>
+
+    <!-- Help Center Caption -->
+    <p class="help-caption">We're here to guide you every step of the way. Explore answers, resources, and tools to help you succeed!</p>
+
+    <!-- Mission Statement -->
+    <div class="mission">
+      <h2>Our Mission</h2>
+      <p>To empower students with essential resources for academic success and career growth, offering notes, syllabus, scheduling tools, placement advice, and career counseling—helping them achieve their goals with confidence.</p>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+      <h2>Frequently Asked Questions (FAQs)</h2>
+      <div class="faq-item">
+        <button class="faq-button" onclick="toggleAnswer('answer1')">How do I access notes?</button>
+        <div id="answer1" class="faq-answer">
+          <p>You can access the notes by visiting the Notes section from the main menu, where all the subjects and topics are listed.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-button" onclick="toggleAnswer('answer2')">How can I get placement advice?</button>
+        <div id="answer2" class="faq-answer">
+          <p>Placement advice can be accessed under the 'Career Counseling' section. You will find tips, resources, and expert guidance there.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-button" onclick="toggleAnswer('answer3')">How can I schedule my study sessions?</button>
+        <div id="answer3" class="faq-answer">
+          <p>Use our integrated scheduling tool to plan and organize your study time effectively. You can access it from the dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Motivational Section -->
+  <section class="motivational">
+    <p>"Success is the sum of small efforts, repeated day in and day out. Keep moving forward, stay focused, and you'll achieve great things. The best is yet to come!"</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Student Help Portal. All Rights Reserved.</p>
+  </footer>
+
+  <script src="help.js"></script>
+</body>
+</html>

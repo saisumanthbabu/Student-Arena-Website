@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Planner</title>
+    <link rel="stylesheet" href="Scheduler.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<header>
+    <img src="logo.png" alt="Logo" class="logo">
+
+</header>
+
+<body>
+    <h1>Study Planner</h1>
+    <form id="study-form">
+        <input type="text" id="subject" placeholder="Enter Subject Name (Max 30 chars)" maxlength="30" required>
+        
+        <div class="time-picker-wrapper">
+            <label>Start Time:</label>
+            <div id="start-time-picker" class="time-picker-container">
+                <select id="start-hour-picker" class="time-column"></select>
+                <select id="start-minute-picker" class="time-column"></select>
+                <select id="start-ampm-picker" class="time-column">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="time-picker-wrapper">
+            <label>End Time:</label>
+            <div id="end-time-picker" class="time-picker-container">
+                <select id="end-hour-picker" class="time-column"></select>
+                <select id="end-minute-picker" class="time-column"></select>
+                <select id="end-ampm-picker" class="time-column">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="button" id="add-slot">Add Slot</button>
+    </form>
+
+    <div id="schedule">
+        <h2>Your Schedule</h2>
+        <ul id="schedule-list">
+            <!-- Slots will appear here -->
+        </ul>
+    </div>
+    <button id="download-pdf">Download PDF</button>
+<label for="pdf-filename">Enter PDF filename: </label>
+<input type="text" id="pdf-file-name" placeholder="Enter filename">
+<button id="clear-schedule">Clear Schedule</button>
+<div class="top-nav">
+    <a href="Arena.html" class="nav-item"><span class="icon">🏠</span> Home</a>
+    <a href="about.html" class="nav-item"><span class="icon">ℹ️</span> About Us</a>
+    <a href="help.html" class="nav-item"><span class="icon">❓</span> Help</a>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>  
+document.addEventListener("DOMContentLoaded", function () {
+    const scheduleList = document.getElementById("schedule-list");
+    const addSlotButton = document.getElementById("add-slot");
+    const clearScheduleButton = document.getElementById("clear-schedule");
+    const pdfFileNameInput = document.getElementById("pdf-file-name");
+
+    // Time Pickers Initialization
+    populateTimePicker("start-hour-picker", "start-minute-picker");
+    populateTimePicker("end-hour-picker", "end-minute-picker");
+
+    function populateTimePicker(hourId, minuteId) {
+        const hourPicker = document.getElementById(hourId);
+        const minutePicker = document.getElementById(minuteId);
+
+        // Populate Hours (1-12)
+        for (let hour = 1; hour <= 12; hour++) {
+            const option = document.createElement("option");
+            option.value = hour;
+            option.textContent = hour;
+            hourPicker.appendChild(option);
+        }
+
+        // Populate Minutes (0-59)
+        for (let minute = 0; minute < 60; minute++) {
+            const option = document.createElement("option");
+            option.value = minute < 10 ? `0${minute}` : minute;
+            option.textContent = minute < 10 ? `0${minute}` : minute;
+            minutePicker.appendChild(option);
+        }
+    }
+
+    // Add Slot with Constraints
+    addSlotButton.addEventListener("click", () => {
+        const subject = document.getElementById("subject").value.trim();
+        const startHour = document.getElementById("start-hour-picker").value;
+        const startMinute = document.getElementById("start-minute-picker").value;
+        const startAmPm = document.getElementById("start-ampm-picker").value;
+        const endHour = document.getElementById("end-hour-picker").value;
+        const endMinute = document.getElementById("end-minute-picker").value;
+        const endAmPm = document.getElementById("end-ampm-picker").value;
+
+        if (!subject) {
+            alert("Subject name cannot be empty.");
+            return;
+        }
+
+        const startTime = convertTo24HourFormat(startHour, startMinute, startAmPm);
+        const endTime = convertTo24HourFormat(endHour, endMinute, endAmPm);
+
+        // Check if the end time is later than the start time, considering the cross-midnight case
+        if (!isValidTimeRange(startTime, endTime)) {
+            alert("End time must be later than start time.");
+            return;
+        }
+
+        
+
+        if (scheduleList.children.length >= 10) {
+            alert("You can only add up to 10 slots.");
+            return;
+        }
+
+        if (isTimeSlotOverlap(startTime, endTime)) {
+            alert("This time slot overlaps with an existing one.");
+            return;
+        }
+
+        addSlotToSchedule(subject, startHour, startMinute, startAmPm, endHour, endMinute, endAmPm);
+    });
+
+    // Add Slot to Schedule
+    function addSlotToSchedule(subject, startHour, startMinute, startAmPm, endHour, endMinute, endAmPm) {
+        const li = document.createElement("li");
+        li.innerHTML = `<span><strong>${subject}</strong>: ${startHour}:${startMinute} ${startAmPm} - ${endHour}:${endMinute} ${endAmPm}</span>
+                        <button class="remove-btn">Remove</button>`;
+
+        scheduleList.appendChild(li);
+
+        li.querySelector(".remove-btn").addEventListener("click", () => {
+            li.remove();
+        });
+
+        document.getElementById("subject").value = ""; // Clear input field
+    }
+
+    // Check for Duplicate Subject Names
+    function isDuplicateSubject(subject) {
+        const existingSubjects = Array.from(scheduleList.querySelectorAll("li span strong"));
+        return existingSubjects.some((item) => item.textContent === subject);
+    }
+
+    // Check for Overlapping Time Slots
+    function isTimeSlotOverlap(startTime, endTime) {
+        const slots = Array.from(scheduleList.querySelectorAll("li span"));
+
+        for (let slot of slots) {
+            const timeRange = slot.textContent.match(/(\d{1,2}:\d{2} (AM|PM)) - (\d{1,2}:\d{2} (AM|PM))/);
+            if (timeRange) {
+                const slotStartTime = convertTo24HourFormat(...timeRange[1].split(/[: ]/));
+                const slotEndTime = convertTo24HourFormat(...timeRange[3].split(/[: ]/));
+
+                if (
+                    (startTime >= slotStartTime && startTime < slotEndTime) || // Overlaps with existing start
+                    (endTime > slotStartTime && endTime <= slotEndTime) || // Overlaps with existing end
+                    (startTime <= slotStartTime && endTime >= slotEndTime) // Completely overlaps an existing slot
+                ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // Convert Time to 24-Hour Format for Comparison
+    function convertTo24HourFormat(hour, minute, period) {
+        hour = parseInt(hour);
+        minute = parseInt(minute);
+        if (period === "PM" && hour !== 12) hour += 12;
+        if (period === "AM" && hour === 12) hour = 0;
+        return hour * 60 + minute; // Return time in minutes
+    }
+
+    // Validate if End Time is Later than Start Time, accounting for Midnight crossover
+    function isValidTimeRange(startTime, endTime) {
+        // If end time is less than start time, it means it's the next day
+        return endTime > startTime || (startTime > endTime && endTime < 1440); // Handle midnight cross scenario
+    }
+
+    // Clear Schedule
+    clearScheduleButton.addEventListener("click", () => {
+        scheduleList.innerHTML = "";
+    });
+
+    // Download Schedule as PDF
+    document.getElementById("download-pdf").addEventListener("click", () => {
+        console.log("Starting PDF generation...");
+
+        // Get the entire schedule list
+        const scheduleContent = document.getElementById("schedule-list");
+
+        if (!scheduleContent.children.length) {
+            console.log("No schedules to generate PDF for.");
+            alert("No schedules to download.");
+            return;
+        }
+
+        const element = document.createElement("div");
+
+        // Add Study Plan heading to the content
+        const heading = document.createElement("h1");
+        heading.textContent = "Study Plan";
+        heading.style.textAlign = "center"; // Center align the title
+        heading.style.marginBottom = "20px"; // Space below the heading
+        element.appendChild(heading);
+
+        // Append schedule content to the new element
+        element.innerHTML += scheduleContent.innerHTML;
+
+        // Remove the "Remove" buttons before generating the PDF
+        const removeButtons = element.querySelectorAll(".remove-btn");
+        removeButtons.forEach(button => button.remove());
+
+        // Apply styles for layout in the PDF
+        const styles = `
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin-top: 25%;
+                    padding: 20px;
+                }
+                h1 {
+                    font-size: 24px;
+                    color: #4CAF50;
+                }
+                ul {
+                    padding-left: 20px;
+                }
+                li {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+                .remove-btn {
+                    display: none; /* Hide remove buttons in the PDF */
+                }
+            </style>
+        `;
+
+        const docContent = document.createElement("div");
+        docContent.innerHTML = styles + element.innerHTML;
+
+        // Get the file name entered by the user, or use a default one
+        const fileName = pdfFileNameInput.value.trim() || "Study_Plan"; 
+
+        // Generate PDF with custom name and layout
+        html2pdf(docContent, {
+            filename: `${fileName}.pdf`,
+            html2canvas: { scale: 4 },
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        });
+
+        console.log("PDF generation completed.");
+    });
+});
+
+</script>
+
+</body>
+</html>

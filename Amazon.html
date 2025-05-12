@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Interview Questions</title>
+    <link rel="stylesheet" href="Common.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+    </header>
+    <h1>Amazon Top Programming Questions</h1>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>1. Two Sum Problem</h3>
+            <button onclick="toggleAnswer('answer1')">Show Answer</button>
+        </div>
+        <div id="answer1" class="answer">
+<pre>
+function twoSum(nums, target) {
+    const map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (map.has(complement)) return [map.get(complement), i];
+        map.set(nums[i], i);
+    }
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>2. Longest Substring Without Repeating Characters</h3>
+            <button onclick="toggleAnswer('answer2')">Show Answer</button>
+        </div>
+        <div id="answer2" class="answer">
+<pre>
+function lengthOfLongestSubstring(s) {
+    let map = new Map(), maxLen = 0, left = 0;
+    for (let right = 0; right < s.length; right++) {
+        if (map.has(s[right])) left = Math.max(map.get(s[right]) + 1, left);
+        map.set(s[right], right);
+        maxLen = Math.max(maxLen, right - left + 1);
+    }
+    return maxLen;
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>3. Container With Most Water</h3>
+            <button onclick="toggleAnswer('answer3')">Show Answer</button>
+        </div>
+        <div id="answer3" class="answer">
+<pre>
+function maxArea(height) {
+    let left = 0, right = height.length - 1, maxWater = 0;
+    while (left < right) {
+        const water = (right - left) * Math.min(height[left], height[right]);
+        maxWater = Math.max(maxWater, water);
+        height[left] < height[right] ? left++ : right--;
+    }
+    return maxWater;
+}
+</pre>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle answer visibility
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            answer.classList.toggle('show-answer');
+        }
+    </script>
+     <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+</body>
+</html>

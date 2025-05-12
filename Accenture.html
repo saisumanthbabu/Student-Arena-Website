@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accenture Interview Questions</title>
+    <link rel="stylesheet" href="Common.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header>
+       
+        <img src="logo.png" alt="Logo" class="logo">
+    </header>
+    <h1>Accenture Top Programming Questions</h1>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>1. Find the Longest Substring Without Repeating Characters</h3>
+            <button onclick="toggleAnswer('answer1')">Show Answer</button>
+        </div>
+        <div id="answer1" class="answer">
+<pre>
+function lengthOfLongestSubstring(s) {
+    let map = new Map();
+    let left = 0, right = 0, maxLen = 0;
+
+    while (right < s.length) {
+        if (map.has(s[right])) {
+            left = Math.max(left, map.get(s[right]) + 1);
+        }
+        map.set(s[right], right);
+        maxLen = Math.max(maxLen, right - left + 1);
+        right++;
+    }
+    return maxLen;
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>2. Merge Intervals</h3>
+            <button onclick="toggleAnswer('answer2')">Show Answer</button>
+        </div>
+        <div id="answer2" class="answer">
+<pre>
+function merge(intervals) {
+    if (intervals.length === 0) return [];
+
+    intervals.sort((a, b) => a[0] - b[0]);
+    let result = [intervals[0]];
+
+    for (let i = 1; i < intervals.length; i++) {
+        let last = result[result.length - 1];
+        if (last[1] >= intervals[i][0]) {
+            last[1] = Math.max(last[1], intervals[i][1]);
+        } else {
+            result.push(intervals[i]);
+        }
+    }
+    return result;
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>3. Valid Parentheses</h3>
+            <button onclick="toggleAnswer('answer3')">Show Answer</button>
+        </div>
+        <div id="answer3" class="answer">
+<pre>
+function isValid(s) {
+    let stack = [];
+    let map = { ')': '(', '}': '{', ']': '[' };
+
+    for (let char of s) {
+        if (map[char]) {
+            if (stack.pop() !== map[char]) return false;
+        } else {
+            stack.push(char);
+        }
+    }
+    return stack.length === 0;
+}
+</pre>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle answer visibility
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            answer.classList.toggle('show-answer');
+        }
+    </script>
+    <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+</body>
+</html>

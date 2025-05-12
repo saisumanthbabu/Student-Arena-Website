@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="container" id="container">
+        <h2>Sign in with email</h2>
+        <form class="sign-in">
+            <div class="input-field">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email" class="placeholder">Email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" placeholder=" " required>
+                <label for="password" class="placeholder">Password</label>
+                <i class="eye-icon" id="eye-icon" onclick="togglePasswordVisibility()">
+                    👁️
+                </i>
+            </div>
+            <a href="#" class="forgot-password">Forgot password?</a>
+            <button type="submit" id="login" class="btn">Get Started</button>
+        </form>
+        <div class="social-login">
+            <button><img src="Google-icon.webp" alt="Google"> Google</button>
+            <button><img src="apple-icon.png" alt="Apple"> Apple</button>
+            <button><img src="Git.png" alt="GitHub"> GitHub</button>
+        </div>
+        <div class="create-account-section">
+            <p>or</p>
+            <a href= "Create-Acc.html"><button id="register" class="create-account">Create an account</button> </a>
+        </div>
+    </div>
+    <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

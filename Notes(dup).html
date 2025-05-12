@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamified Notes Exploration</title>
+    <link rel="stylesheet" href="Notes(dup).css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Welcome to the Gamified Notes Exploration!</h1>
+        <div class="level-selector">
+            <h2>Select a Subject (Level)</h2>
+            <select id="subject" onchange="unlockUnitOptions()">
+                <option value="">--Choose a Subject--</option>
+                <option value="nosql">NoSQL</option>
+                <option value="Operations Research">Operations Research</option>
+                <option value="Big Data Processing">Big Data Processing</option>
+                <option value="Deep Learning">Deep Learning</option>
+                <option value="Cryptography And Network Security">Cryptography And Network Security</option>
+                <option value="UIUX">UIUX</option>
+                <option value="Fog and Edge">Fog and Edge</option>
+            </select>
+        </div>
+        <div class="unit-selector" style="display: none;">
+            <h2>Select a Unit (Unlock Notes)</h2>
+            <select id="unit">
+                <option value="">--Choose a Unit--</option>
+                <option value="unit1">Unit 1</option>
+                <option value="unit2">Unit 2</option>
+                <option value="unit3">Unit 3</option>
+                <option value="unit4">Unit 4</option>
+            </select>
+            <button id="open-button" onclick="submitNotes()">Open Notes</button>
+        </div>
+        <div class="game-info">
+            <h3>Progress:</h3>
+            <div id="progress-bar">
+                <div id="progress" style="width: 0;"></div>
+            </div>
+        </div>
+        <div id="notes-container" style="display: none;">
+            <h3>Unlocked Notes:</h3>
+            <p id="notes"></p>
+        </div>
+    </div>
+    <div class="top-nav">
+        <a href="Arena.html" class="nav-item"><span class="icon">🏠</span> Home</a>
+        <a href="about.html" class="nav-item"><span class="icon">ℹ️</span> About Us</a>
+        <a href="help.html" class="nav-item"><span class="icon">❓</span> Help</a>
+    </div>
+    <script src="Notes(dup).js"></script>
+</body>
+</html>

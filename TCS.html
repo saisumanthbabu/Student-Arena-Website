@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCS Interview Questions</title>
+    <link rel="stylesheet" href="Common.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header>
+       
+        <img src="logo.png" alt="Logo" class="logo">
+    </header>
+    <h1>TCS Top Programming Questions</h1>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>1. Reverse a String</h3>
+            <button onclick="toggleAnswer('answer1')">Show Answer</button>
+        </div>
+        <div id="answer1" class="answer">
+<pre>
+function reverseString(s) {
+    return s.split('').reverse().join('');
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>2. Find the Missing Number</h3>
+            <button onclick="toggleAnswer('answer2')">Show Answer</button>
+        </div>
+        <div id="answer2" class="answer">
+<pre>
+function findMissingNumber(arr) {
+    const n = arr.length + 1;
+    const expectedSum = (n * (n + 1)) / 2;
+    const actualSum = arr.reduce((a, b) => a + b, 0);
+    return expectedSum - actualSum;
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>3. Check if a Number is Prime</h3>
+            <button onclick="toggleAnswer('answer3')">Show Answer</button>
+        </div>
+        <div id="answer3" class="answer">
+<pre>
+function isPrime(num) {
+    if (num <= 1) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}
+</pre>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle answer visibility
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            answer.classList.toggle('show-answer');
+        }
+    </script>
+     <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+</body>
+</html>

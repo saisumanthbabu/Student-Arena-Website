@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Interview Questions</title>
+    <link rel="stylesheet" href="Common.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header>
+       
+        <img src="logo.png" alt="Logo" class="logo">
+    </header>
+    <h1>Intel Top Programming Questions</h1>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>1. Find the Intersection of Two Linked Lists</h3>
+            <button onclick="toggleAnswer('answer1')">Show Answer</button>
+        </div>
+        <div id="answer1" class="answer">
+<pre>
+function getIntersectionNode(headA, headB) {
+    if (!headA || !headB) return null;
+
+    let a = headA;
+    let b = headB;
+
+    while (a !== b) {
+        a = a ? a.next : headB;
+        b = b ? b.next : headA;
+    }
+
+    return a;
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>2. Find the Longest Substring Without Repeating Characters</h3>
+            <button onclick="toggleAnswer('answer2')">Show Answer</button>
+        </div>
+        <div id="answer2" class="answer">
+<pre>
+function lengthOfLongestSubstring(s) {
+    let set = new Set();
+    let left = 0, right = 0, maxLength = 0;
+
+    while (right < s.length) {
+        if (!set.has(s[right])) {
+            set.add(s[right]);
+            maxLength = Math.max(maxLength, right - left + 1);
+            right++;
+        } else {
+            set.delete(s[left]);
+            left++;
+        }
+    }
+
+    return maxLength;
+}
+</pre>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-header">
+            <h3>3. Merge Intervals</h3>
+            <button onclick="toggleAnswer('answer3')">Show Answer</button>
+        </div>
+        <div id="answer3" class="answer">
+<pre>
+function merge(intervals) {
+    if (intervals.length <= 1) return intervals;
+
+    intervals.sort((a, b) => a[0] - b[0]);
+
+    let merged = [intervals[0]];
+
+    for (let i = 1; i < intervals.length; i++) {
+        let last = merged[merged.length - 1];
+        let current = intervals[i];
+
+        if (current[0] <= last[1]) {
+            last[1] = Math.max(last[1], current[1]);
+        } else {
+            merged.push(current);
+        }
+    }
+
+    return merged;
+}
+</pre>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle answer visibility
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            answer.classList.toggle('show-answer');
+        }
+    </script>
+     <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+</body>
+</html>

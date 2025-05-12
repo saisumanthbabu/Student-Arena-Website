@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Create-Acc.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="container">
+        <h2>Create an Account</h2>
+        <form id="create-account-form">
+            <div class="input-field">
+                <input type="text" id="name" placeholder=" " required>
+                <label for="name" class="placeholder">Full Name</label>
+            </div>
+            <div class="input-field">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email" class="placeholder">Email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" placeholder=" " required>
+                <label for="password" class="placeholder">Password</label>
+                <i id="password-eye" class="eye-icon">&#128065;</i> <!-- Eye Icon -->
+            </div>
+            <div class="input-field">
+                <input type="password" id="confirm-password" placeholder=" " required>
+                <label for="confirm-password" class="placeholder">Confirm Password</label>
+                <i id="confirm-password-eye" class="eye-icon">&#128065;</i> <!-- Eye Icon -->
+            </div>
+            
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="index.html">Log in</a></p>
+    </div>
+    <footer>
+        <p>Developed by Mad Techies</p>
+    </footer>
+    <script src="Create-Acc.js"></script>
+</body>
+</html>
